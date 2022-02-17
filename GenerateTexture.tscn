@@ -1,8 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwpwpaxai4ywp"]
+[gd_scene load_steps=14 format=3 uid="uid://cwpwpaxai4ywp"]
 
 [ext_resource type="Script" path="res://GenerateTexture.gd" id="1_vfh1h"]
+[ext_resource type="Shader" path="res://Green.gdshader" id="2_7jtbv"]
+[ext_resource type="Texture2D" uid="uid://bdlfyexyauk5e" path="res://icon.png" id="2_xecim"]
+[ext_resource type="Shader" path="res://Red.gdshader" id="3_u8lr0"]
+[ext_resource type="Shader" path="res://Blue.gdshader" id="4_rpxtv"]
+[ext_resource type="Shader" path="res://Fire.gdshader" id="5_ujc5s"]
 
-[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_ctikf"]
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_byt4g"]
+period = 59.1
+persistence = 0.555
+lacunarity = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_baxb2"]
+shader = ExtResource( "2_7jtbv" )
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o2l6a"]
+shader = ExtResource( "3_u8lr0" )
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r8h1w"]
+shader = ExtResource( "4_rpxtv" )
+
+[sub_resource type="Gradient" id="Gradient_sakdx"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f85jh"]
+gradient = SubResource( "Gradient_sakdx" )
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3dfrb"]
+shader = ExtResource( "5_ujc5s" )
+shader_param/speed = null
+shader_param/color = Color(1, 1, 1, 1)
+shader_param/gradient = SubResource( "GradientTexture2D_f85jh" )
 
 [node name="GenerateTexture" type="Control"]
 anchor_right = 1.0
@@ -19,104 +47,145 @@ __meta__ = {
 }
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-offset_left = 4.0
-offset_right = 396.0
-offset_bottom = 606.0
+offset_left = 26.0
+offset_top = 19.0
+offset_right = 474.0
+offset_bottom = 740.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grid" type="GridContainer" parent="Center/Panel"]
-offset_right = 392.0
-offset_bottom = 606.0
+[node name="Margin" type="MarginContainer" parent="Center/Panel"]
+offset_right = 448.0
+offset_bottom = 721.0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_bottom = 16
 script = ExtResource( "1_vfh1h" )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-_noise = SubResource( "OpenSimplexNoise_ctikf" )
+_noise = SubResource( "OpenSimplexNoise_byt4g" )
 
-[node name="VBox" type="VBoxContainer" parent="Center/Panel/Grid"]
-offset_right = 392.0
-offset_bottom = 606.0
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/Margin"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 432.0
+offset_bottom = 705.0
+theme_override_constants/separation = 16
 
-[node name="Top" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
-offset_right = 392.0
+[node name="Top" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+offset_right = 416.0
 offset_bottom = 128.0
 alignment = 1
 
-[node name="Panel" type="PanelContainer" parent="Center/Panel/Grid/VBox/Top"]
-offset_left = 132.0
-offset_right = 260.0
+[node name="Panel" type="PanelContainer" parent="Center/Panel/Margin/VBox/Top"]
+offset_left = 144.0
+offset_right = 272.0
 offset_bottom = 128.0
 
-[node name="Green" type="TextureRect" parent="Center/Panel/Grid/VBox/Top/Panel"]
+[node name="Green" type="TextureRect" parent="Center/Panel/Margin/VBox/Top/Panel"]
+material = SubResource( "ShaderMaterial_baxb2" )
 offset_right = 128.0
 offset_bottom = 128.0
 rect_min_size = Vector2(128, 128)
 
-[node name="Middle" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
-offset_top = 132.0
-offset_right = 392.0
-offset_bottom = 260.0
+[node name="Middle" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+offset_top = 144.0
+offset_right = 416.0
+offset_bottom = 272.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Panel1" type="PanelContainer" parent="Center/Panel/Grid/VBox/Middle"]
+[node name="Panel1" type="PanelContainer" parent="Center/Panel/Margin/VBox/Middle"]
 offset_right = 128.0
 offset_bottom = 128.0
 
-[node name="Red" type="TextureRect" parent="Center/Panel/Grid/VBox/Middle/Panel1"]
-offset_right = 128.0
-offset_bottom = 128.0
-rect_min_size = Vector2(128, 128)
-
-[node name="Panel2" type="PanelContainer" parent="Center/Panel/Grid/VBox/Middle"]
-offset_left = 132.0
-offset_right = 260.0
-offset_bottom = 128.0
-
-[node name="Texture" type="TextureRect" parent="Center/Panel/Grid/VBox/Middle/Panel2"]
+[node name="Red" type="TextureRect" parent="Center/Panel/Margin/VBox/Middle/Panel1"]
+material = SubResource( "ShaderMaterial_o2l6a" )
 offset_right = 128.0
 offset_bottom = 128.0
 rect_min_size = Vector2(128, 128)
 
-[node name="Panel3" type="PanelContainer" parent="Center/Panel/Grid/VBox/Middle"]
-offset_left = 264.0
-offset_right = 392.0
+[node name="Panel2" type="PanelContainer" parent="Center/Panel/Margin/VBox/Middle"]
+offset_left = 144.0
+offset_right = 272.0
 offset_bottom = 128.0
 
-[node name="Blue" type="TextureRect" parent="Center/Panel/Grid/VBox/Middle/Panel3"]
+[node name="Texture" type="TextureRect" parent="Center/Panel/Margin/VBox/Middle/Panel2"]
 offset_right = 128.0
 offset_bottom = 128.0
 rect_min_size = Vector2(128, 128)
 
-[node name="Bottom" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
-offset_top = 264.0
-offset_right = 392.0
-offset_bottom = 392.0
+[node name="Panel3" type="PanelContainer" parent="Center/Panel/Margin/VBox/Middle"]
+offset_left = 288.0
+offset_right = 416.0
+offset_bottom = 128.0
+
+[node name="Blue" type="TextureRect" parent="Center/Panel/Margin/VBox/Middle/Panel3"]
+material = SubResource( "ShaderMaterial_r8h1w" )
+offset_right = 128.0
+offset_bottom = 128.0
+rect_min_size = Vector2(128, 128)
+
+[node name="Bottom" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+offset_top = 288.0
+offset_right = 416.0
+offset_bottom = 416.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Panel" type="PanelContainer" parent="Center/Panel/Grid/VBox/Bottom"]
-offset_left = 132.0
-offset_right = 260.0
+[node name="Panel" type="PanelContainer" parent="Center/Panel/Margin/VBox/Bottom"]
+offset_left = 144.0
+offset_right = 272.0
 offset_bottom = 128.0
 
-[node name="Preview" type="TextureRect" parent="Center/Panel/Grid/VBox/Bottom/Panel"]
+[node name="Preview" type="TextureRect" parent="Center/Panel/Margin/VBox/Bottom/Panel"]
+material = SubResource( "ShaderMaterial_3dfrb" )
 offset_right = 128.0
 offset_bottom = 128.0
 rect_min_size = Vector2(128, 128)
+texture = ExtResource( "2_xecim" )
 
-[node name="Settings" type="VBoxContainer" parent="Center/Panel/Grid/VBox"]
-offset_top = 396.0
-offset_right = 392.0
-offset_bottom = 571.0
+[node name="Settings" type="VBoxContainer" parent="Center/Panel/Margin/VBox"]
+offset_top = 432.0
+offset_right = 416.0
+offset_bottom = 642.0
 alignment = 1
 
-[node name="Seed" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
-offset_right = 392.0
+[node name="Color" type="HBoxContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_right = 416.0
 offset_bottom = 31.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Seed"]
+[node name="Label" type="Label" parent="Center/Panel/Margin/VBox/Settings/Color"]
+offset_left = 66.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 28.0
+rect_min_size = Vector2(88, 0)
+text = "Color"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox/Settings/Color"]
+offset_left = 170.0
+offset_right = 234.0
+offset_bottom = 31.0
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Center/Panel/Margin/VBox/Settings/Color"]
+offset_left = 250.0
+offset_right = 350.0
+offset_bottom = 31.0
+rect_min_size = Vector2(100, 0)
+
+[node name="Seed" type="HBoxContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_top = 35.0
+offset_right = 416.0
+offset_bottom = 66.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Margin/VBox/Settings/Seed"]
 offset_left = 66.0
 offset_top = 2.0
 offset_right = 154.0
@@ -126,26 +195,27 @@ text = "Seed"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Seed"]
-offset_left = 158.0
-offset_right = 222.0
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox/Settings/Seed"]
+offset_left = 170.0
+offset_right = 234.0
 offset_bottom = 31.0
 
-[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Seed"]
-offset_left = 226.0
-offset_right = 326.0
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/VBox/Settings/Seed"]
+offset_left = 250.0
+offset_right = 350.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
 max_value = 2e+08
 
-[node name="Octaves" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
-offset_top = 35.0
-offset_right = 392.0
-offset_bottom = 66.0
+[node name="Octaves" type="HBoxContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_top = 70.0
+offset_right = 416.0
+offset_bottom = 101.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Octaves"]
+[node name="Label" type="Label" parent="Center/Panel/Margin/VBox/Settings/Octaves"]
 offset_left = 66.0
 offset_top = 2.0
 offset_right = 154.0
@@ -155,14 +225,14 @@ text = "Octaves"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Octaves"]
-offset_left = 158.0
-offset_right = 222.0
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox/Settings/Octaves"]
+offset_left = 170.0
+offset_right = 234.0
 offset_bottom = 31.0
 
-[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Octaves"]
-offset_left = 226.0
-offset_right = 326.0
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/VBox/Settings/Octaves"]
+offset_left = 250.0
+offset_right = 350.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -170,13 +240,14 @@ min_value = 1.0
 max_value = 9.0
 value = 1.0
 
-[node name="Period" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
-offset_top = 70.0
-offset_right = 392.0
-offset_bottom = 101.0
+[node name="Period" type="HBoxContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_top = 105.0
+offset_right = 416.0
+offset_bottom = 136.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Period"]
+[node name="Label" type="Label" parent="Center/Panel/Margin/VBox/Settings/Period"]
 offset_left = 66.0
 offset_top = 2.0
 offset_right = 154.0
@@ -186,14 +257,14 @@ text = "Period"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Period"]
-offset_left = 158.0
-offset_right = 222.0
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox/Settings/Period"]
+offset_left = 170.0
+offset_right = 234.0
 offset_bottom = 31.0
 
-[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Period"]
-offset_left = 226.0
-offset_right = 326.0
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/VBox/Settings/Period"]
+offset_left = 250.0
+offset_right = 350.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -202,13 +273,14 @@ max_value = 256.0
 step = 0.1
 value = 0.1
 
-[node name="Persistance" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
-offset_top = 105.0
-offset_right = 392.0
-offset_bottom = 136.0
+[node name="Persistence" type="HBoxContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_top = 140.0
+offset_right = 416.0
+offset_bottom = 171.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Persistance"]
+[node name="Label" type="Label" parent="Center/Panel/Margin/VBox/Settings/Persistence"]
 offset_left = 66.0
 offset_top = 2.0
 offset_right = 154.0
@@ -218,27 +290,28 @@ text = "Persistance"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Persistance"]
-offset_left = 158.0
-offset_right = 222.0
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox/Settings/Persistence"]
+offset_left = 170.0
+offset_right = 234.0
 offset_bottom = 31.0
 
-[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Persistance"]
-offset_left = 226.0
-offset_right = 326.0
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/VBox/Settings/Persistence"]
+offset_left = 250.0
+offset_right = 350.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
 max_value = 1.0
 step = 0.01
 
-[node name="Lacunarity" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
-offset_top = 140.0
-offset_right = 392.0
-offset_bottom = 171.0
+[node name="Lacunarity" type="HBoxContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_top = 175.0
+offset_right = 416.0
+offset_bottom = 206.0
+theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Lacunarity"]
+[node name="Label" type="Label" parent="Center/Panel/Margin/VBox/Settings/Lacunarity"]
 offset_left = 66.0
 offset_top = 2.0
 offset_right = 154.0
@@ -248,39 +321,43 @@ text = "Lacunarity"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Lacunarity"]
-offset_left = 158.0
-offset_right = 222.0
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/VBox/Settings/Lacunarity"]
+offset_left = 170.0
+offset_right = 234.0
 offset_bottom = 31.0
 
-[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Lacunarity"]
-offset_left = 226.0
-offset_right = 326.0
+[node name="HSlider" type="HSlider" parent="Center/Panel/Margin/VBox/Settings/Lacunarity"]
+offset_left = 250.0
+offset_right = 350.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
+min_value = 0.1
+max_value = 4.0
+step = 0.1
+value = 0.1
 
-[node name="GridContainer" type="GridContainer" parent="Center/Panel/Grid/VBox/Settings"]
-offset_top = 175.0
-offset_right = 392.0
-offset_bottom = 175.0
+[node name="GridContainer" type="GridContainer" parent="Center/Panel/Margin/VBox/Settings"]
+offset_top = 210.0
+offset_right = 416.0
+offset_bottom = 210.0
 columns = 3
 
-[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
-offset_top = 575.0
-offset_right = 392.0
-offset_bottom = 606.0
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Margin/VBox"]
+offset_top = 658.0
+offset_right = 416.0
+offset_bottom = 689.0
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="Generate" type="Button" parent="Center/Panel/Grid/VBox/Buttons"]
-offset_left = 126.0
-offset_right = 205.0
+[node name="Generate" type="Button" parent="Center/Panel/Margin/VBox/Buttons"]
+offset_left = 138.0
+offset_right = 217.0
 offset_bottom = 31.0
 text = "Generate"
 
-[node name="Save" type="Button" parent="Center/Panel/Grid/VBox/Buttons"]
-offset_left = 221.0
-offset_right = 265.0
+[node name="Save" type="Button" parent="Center/Panel/Margin/VBox/Buttons"]
+offset_left = 233.0
+offset_right = 277.0
 offset_bottom = 31.0
 text = "Save"
