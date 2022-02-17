@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://snd5b72ny7cd"]
+[gd_scene load_steps=3 format=3 uid="uid://cwpwpaxai4ywp"]
 
-[ext_resource type="Script" path="res://TestGenerate.gd" id="1_mjnq0"]
+[ext_resource type="Script" path="res://GenerateTexture.gd" id="1_vfh1h"]
 
 [sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_ctikf"]
 
-[node name="TestGenerate" type="Control"]
+[node name="GenerateTexture" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
@@ -29,7 +29,7 @@ __meta__ = {
 [node name="Grid" type="GridContainer" parent="Center/Panel"]
 offset_right = 392.0
 offset_bottom = 606.0
-script = ExtResource( "1_mjnq0" )
+script = ExtResource( "1_vfh1h" )
 __meta__ = {
 "_edit_use_anchors_": false
 }

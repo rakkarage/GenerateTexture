@@ -11,10 +11,11 @@ config_version=5
 [application]
 
 config/name="GenerateTexture"
-run/main_scene="res://TestGenerate.tscn"
+run/main_scene="res://GenerateTexture.tscn"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
 
 [display]
 
-window/size/viewport_width=400
+window/size/viewport_width=460
+window/size/viewport_height=660

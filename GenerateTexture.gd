@@ -26,7 +26,7 @@ extends Control
 
 @export var _size := 128
 @export var _seedMax := 65535
-@export var _path := "res://TestGenerate.png"
+@export var _path := "res://GenerateTexture.png"
 @export var _noise := OpenSimplexNoise.new()
 
 var _output := Image.new()
