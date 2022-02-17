@@ -28,28 +28,23 @@ handle_input_locally = false
 size = Vector2i(512, 300)
 render_target_update_mode = 4
 
-[node name="Panel" type="PanelContainer" parent="SubViewport/SubViewport"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -64.0
-offset_top = -99.0
-offset_right = 64.0
-offset_bottom = 99.0
+[node name="Center" type="CenterContainer" parent="SubViewport/SubViewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="PanelContainer" parent="SubViewport/SubViewport/Panel"]
-offset_right = 128.0
-offset_bottom = 198.0
+[node name="Panel" type="PanelContainer" parent="SubViewport/SubViewport/Center"]
+offset_left = 448.0
+offset_top = 201.0
+offset_right = 576.0
+offset_bottom = 399.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Center" type="CenterContainer" parent="SubViewport/SubViewport/Panel/Panel"]
-offset_right = 128.0
-offset_bottom = 198.0
-
-[node name="Grid" type="GridContainer" parent="SubViewport/SubViewport/Panel/Panel/Center"]
+[node name="Grid" type="GridContainer" parent="SubViewport/SubViewport/Center/Panel"]
 offset_right = 128.0
 offset_bottom = 198.0
 script = ExtResource( "1_mjnq0" )
@@ -58,18 +53,18 @@ __meta__ = {
 }
 _noise = SubResource( "OpenSimplexNoise_ctikf" )
 
-[node name="Texture" type="TextureRect" parent="SubViewport/SubViewport/Panel/Panel/Center/Grid"]
+[node name="Texture" type="TextureRect" parent="SubViewport/SubViewport/Center/Panel/Grid"]
 offset_right = 128.0
 offset_bottom = 128.0
 rect_min_size = Vector2(128, 128)
 
-[node name="Generate" type="Button" parent="SubViewport/SubViewport/Panel/Panel/Center/Grid"]
+[node name="Generate" type="Button" parent="SubViewport/SubViewport/Center/Panel/Grid"]
 offset_top = 132.0
 offset_right = 128.0
 offset_bottom = 163.0
 text = "Generate"
 
-[node name="Save" type="Button" parent="SubViewport/SubViewport/Panel/Panel/Center/Grid"]
+[node name="Save" type="Button" parent="SubViewport/SubViewport/Center/Panel/Grid"]
 offset_top = 167.0
 offset_right = 128.0
 offset_bottom = 198.0
