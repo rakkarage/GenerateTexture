@@ -12,14 +12,12 @@ extends Control
 var _output := Image.new()
 
 func _ready() -> void:
+	_output.create(_size.x, _size.y, false, Image.FORMAT_RGBA8)
 	assert(_generate.connect("pressed", _generatePressed) == OK)
 	assert(_save.connect("pressed", _savePressed) == OK)
 	_generatePressed()
 
 func _generatePressed() -> void:
-	_output.create(_size.x, _size.y, false, Image.FORMAT_RGBA8)
-	_output.fill(Color(randf(), randf(), randf()))
-
 	_noise.seed += randi() % _seedMax
 	var image1 := _noise.get_image(_size.x, _size.y)
 	_noise.seed += randi() % _seedMax
