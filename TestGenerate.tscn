@@ -3,8 +3,6 @@
 [ext_resource type="Script" path="res://TestGenerate.gd" id="1_mjnq0"]
 
 [sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_ctikf"]
-octaves = 8
-persistence = 0.777
 
 [node name="TestGenerate" type="Control"]
 anchor_right = 1.0
@@ -13,59 +11,276 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SubViewport" type="SubViewportContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-stretch = true
-stretch_shrink = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SubViewport" type="SubViewport" parent="SubViewport"]
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(512, 300)
-render_target_update_mode = 4
-
-[node name="Center" type="CenterContainer" parent="SubViewport/SubViewport"]
+[node name="Center" type="CenterContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="PanelContainer" parent="SubViewport/SubViewport/Center"]
-offset_left = 448.0
-offset_top = 201.0
-offset_right = 576.0
-offset_bottom = 399.0
+[node name="Panel" type="PanelContainer" parent="Center"]
+offset_left = 4.0
+offset_right = 396.0
+offset_bottom = 606.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grid" type="GridContainer" parent="SubViewport/SubViewport/Center/Panel"]
-offset_right = 128.0
-offset_bottom = 198.0
+[node name="Grid" type="GridContainer" parent="Center/Panel"]
+offset_right = 392.0
+offset_bottom = 606.0
 script = ExtResource( "1_mjnq0" )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 _noise = SubResource( "OpenSimplexNoise_ctikf" )
 
-[node name="Texture" type="TextureRect" parent="SubViewport/SubViewport/Center/Panel/Grid"]
+[node name="VBox" type="VBoxContainer" parent="Center/Panel/Grid"]
+offset_right = 392.0
+offset_bottom = 606.0
+
+[node name="Top" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
+offset_right = 392.0
+offset_bottom = 128.0
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="Center/Panel/Grid/VBox/Top"]
+offset_left = 132.0
+offset_right = 260.0
+offset_bottom = 128.0
+
+[node name="Green" type="TextureRect" parent="Center/Panel/Grid/VBox/Top/Panel"]
 offset_right = 128.0
 offset_bottom = 128.0
 rect_min_size = Vector2(128, 128)
 
-[node name="Generate" type="Button" parent="SubViewport/SubViewport/Center/Panel/Grid"]
+[node name="Middle" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
 offset_top = 132.0
+offset_right = 392.0
+offset_bottom = 260.0
+alignment = 1
+
+[node name="Panel1" type="PanelContainer" parent="Center/Panel/Grid/VBox/Middle"]
 offset_right = 128.0
-offset_bottom = 163.0
+offset_bottom = 128.0
+
+[node name="Red" type="TextureRect" parent="Center/Panel/Grid/VBox/Middle/Panel1"]
+offset_right = 128.0
+offset_bottom = 128.0
+rect_min_size = Vector2(128, 128)
+
+[node name="Panel2" type="PanelContainer" parent="Center/Panel/Grid/VBox/Middle"]
+offset_left = 132.0
+offset_right = 260.0
+offset_bottom = 128.0
+
+[node name="Texture" type="TextureRect" parent="Center/Panel/Grid/VBox/Middle/Panel2"]
+offset_right = 128.0
+offset_bottom = 128.0
+rect_min_size = Vector2(128, 128)
+
+[node name="Panel3" type="PanelContainer" parent="Center/Panel/Grid/VBox/Middle"]
+offset_left = 264.0
+offset_right = 392.0
+offset_bottom = 128.0
+
+[node name="Blue" type="TextureRect" parent="Center/Panel/Grid/VBox/Middle/Panel3"]
+offset_right = 128.0
+offset_bottom = 128.0
+rect_min_size = Vector2(128, 128)
+
+[node name="Bottom" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
+offset_top = 264.0
+offset_right = 392.0
+offset_bottom = 392.0
+alignment = 1
+
+[node name="Panel" type="PanelContainer" parent="Center/Panel/Grid/VBox/Bottom"]
+offset_left = 132.0
+offset_right = 260.0
+offset_bottom = 128.0
+
+[node name="Preview" type="TextureRect" parent="Center/Panel/Grid/VBox/Bottom/Panel"]
+offset_right = 128.0
+offset_bottom = 128.0
+rect_min_size = Vector2(128, 128)
+
+[node name="Settings" type="VBoxContainer" parent="Center/Panel/Grid/VBox"]
+offset_top = 396.0
+offset_right = 392.0
+offset_bottom = 571.0
+alignment = 1
+
+[node name="Seed" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
+offset_right = 392.0
+offset_bottom = 31.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Seed"]
+offset_left = 66.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 28.0
+rect_min_size = Vector2(88, 0)
+text = "Seed"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Seed"]
+offset_left = 158.0
+offset_right = 222.0
+offset_bottom = 31.0
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Seed"]
+offset_left = 226.0
+offset_right = 326.0
+offset_bottom = 31.0
+rect_min_size = Vector2(100, 0)
+size_flags_vertical = 1
+max_value = 2e+08
+
+[node name="Octaves" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
+offset_top = 35.0
+offset_right = 392.0
+offset_bottom = 66.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Octaves"]
+offset_left = 66.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 28.0
+rect_min_size = Vector2(88, 0)
+text = "Octaves"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Octaves"]
+offset_left = 158.0
+offset_right = 222.0
+offset_bottom = 31.0
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Octaves"]
+offset_left = 226.0
+offset_right = 326.0
+offset_bottom = 31.0
+rect_min_size = Vector2(100, 0)
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 9.0
+value = 1.0
+
+[node name="Period" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
+offset_top = 70.0
+offset_right = 392.0
+offset_bottom = 101.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Period"]
+offset_left = 66.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 28.0
+rect_min_size = Vector2(88, 0)
+text = "Period"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Period"]
+offset_left = 158.0
+offset_right = 222.0
+offset_bottom = 31.0
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Period"]
+offset_left = 226.0
+offset_right = 326.0
+offset_bottom = 31.0
+rect_min_size = Vector2(100, 0)
+size_flags_vertical = 1
+min_value = 0.1
+max_value = 256.0
+step = 0.1
+value = 0.1
+
+[node name="Persistance" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
+offset_top = 105.0
+offset_right = 392.0
+offset_bottom = 136.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Persistance"]
+offset_left = 66.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 28.0
+rect_min_size = Vector2(88, 0)
+text = "Persistance"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Persistance"]
+offset_left = 158.0
+offset_right = 222.0
+offset_bottom = 31.0
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Persistance"]
+offset_left = 226.0
+offset_right = 326.0
+offset_bottom = 31.0
+rect_min_size = Vector2(100, 0)
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+
+[node name="Lacunarity" type="HBoxContainer" parent="Center/Panel/Grid/VBox/Settings"]
+offset_top = 140.0
+offset_right = 392.0
+offset_bottom = 171.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Center/Panel/Grid/VBox/Settings/Lacunarity"]
+offset_left = 66.0
+offset_top = 2.0
+offset_right = 154.0
+offset_bottom = 28.0
+rect_min_size = Vector2(88, 0)
+text = "Lacunarity"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="Center/Panel/Grid/VBox/Settings/Lacunarity"]
+offset_left = 158.0
+offset_right = 222.0
+offset_bottom = 31.0
+
+[node name="HSlider" type="HSlider" parent="Center/Panel/Grid/VBox/Settings/Lacunarity"]
+offset_left = 226.0
+offset_right = 326.0
+offset_bottom = 31.0
+rect_min_size = Vector2(100, 0)
+size_flags_vertical = 1
+
+[node name="GridContainer" type="GridContainer" parent="Center/Panel/Grid/VBox/Settings"]
+offset_top = 175.0
+offset_right = 392.0
+offset_bottom = 175.0
+columns = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Center/Panel/Grid/VBox"]
+offset_top = 575.0
+offset_right = 392.0
+offset_bottom = 606.0
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Generate" type="Button" parent="Center/Panel/Grid/VBox/Buttons"]
+offset_left = 126.0
+offset_right = 205.0
+offset_bottom = 31.0
 text = "Generate"
 
-[node name="Save" type="Button" parent="SubViewport/SubViewport/Center/Panel/Grid"]
-offset_top = 167.0
-offset_right = 128.0
-offset_bottom = 198.0
+[node name="Save" type="Button" parent="Center/Panel/Grid/VBox/Buttons"]
+offset_left = 221.0
+offset_right = 265.0
+offset_bottom = 31.0
 text = "Save"
