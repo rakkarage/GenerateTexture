@@ -189,6 +189,7 @@ offset_left = 232.0
 offset_right = 332.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
+edit_alpha = false
 
 [node name="Seed" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_top = 35.0
