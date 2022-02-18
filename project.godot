@@ -14,8 +14,3 @@ config/name="GenerateTexture"
 run/main_scene="res://GenerateTexture.tscn"
 config/icon="res://icon.png"
 config/features=PackedStringArray("4.0", "Vulkan Clustered")
-
-[display]
-
-window/size/viewport_width=500
-window/size/viewport_height=760
