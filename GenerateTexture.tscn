@@ -157,22 +157,22 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Settings" type="VBoxContainer" parent="Center/Panel/Margin/HBox/Left"]
-offset_top = 81.0
+offset_top = 48.0
 offset_right = 332.0
-offset_bottom = 287.0
+offset_bottom = 320.0
+theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Color" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_right = 332.0
-offset_bottom = 31.0
+offset_bottom = 32.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
-offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 28.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 text = "Color"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -180,28 +180,27 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
 offset_left = 116.0
 offset_right = 216.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 alignment = 1
 
 [node name="ColorPicker" type="ColorPickerButton" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
 offset_left = 232.0
 offset_right = 332.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 
 [node name="Seed" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
-offset_top = 35.0
+offset_top = 48.0
 offset_right = 332.0
-offset_bottom = 66.0
+offset_bottom = 80.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
-offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 28.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 text = "Seed"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -209,30 +208,29 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
 offset_left = 116.0
 offset_right = 216.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
 offset_left = 232.0
 offset_right = 332.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 size_flags_vertical = 1
 max_value = 2e+08
 
 [node name="Octaves" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
-offset_top = 70.0
+offset_top = 96.0
 offset_right = 332.0
-offset_bottom = 101.0
+offset_bottom = 128.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
-offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 28.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 text = "Octaves"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -240,32 +238,31 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
 offset_left = 116.0
 offset_right = 216.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
 offset_left = 232.0
 offset_right = 332.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 size_flags_vertical = 1
 min_value = 1.0
 max_value = 9.0
 value = 1.0
 
 [node name="Period" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
-offset_top = 105.0
+offset_top = 144.0
 offset_right = 332.0
-offset_bottom = 136.0
+offset_bottom = 176.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
-offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 28.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 text = "Period"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -273,15 +270,15 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
 offset_left = 116.0
 offset_right = 216.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
 offset_left = 232.0
 offset_right = 332.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 size_flags_vertical = 1
 min_value = 0.1
 max_value = 256.0
@@ -289,17 +286,16 @@ step = 0.1
 value = 0.1
 
 [node name="Persistence" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
-offset_top = 140.0
+offset_top = 192.0
 offset_right = 332.0
-offset_bottom = 171.0
+offset_bottom = 224.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
-offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 28.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 text = "Persistance"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -307,31 +303,30 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
 offset_left = 116.0
 offset_right = 216.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
 offset_left = 232.0
 offset_right = 332.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 size_flags_vertical = 1
 max_value = 1.0
 step = 0.001
 
 [node name="Lacunarity" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
-offset_top = 175.0
+offset_top = 240.0
 offset_right = 332.0
-offset_bottom = 206.0
+offset_bottom = 272.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Label" type="Label" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
-offset_top = 2.0
 offset_right = 100.0
-offset_bottom = 28.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 text = "Lacunarity"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -339,15 +334,15 @@ vertical_alignment = 1
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
 offset_left = 116.0
 offset_right = 216.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
 offset_left = 232.0
 offset_right = 332.0
-offset_bottom = 31.0
-rect_min_size = Vector2(100, 0)
+offset_bottom = 32.0
+rect_min_size = Vector2(100, 32)
 size_flags_vertical = 1
 min_value = 0.1
 max_value = 4.0
@@ -355,9 +350,9 @@ step = 0.01
 value = 0.1
 
 [node name="Buttons" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left"]
-offset_top = 303.0
+offset_top = 336.0
 offset_right = 332.0
-offset_bottom = 334.0
+offset_bottom = 367.0
 theme_override_constants/separation = 16
 alignment = 1
 
