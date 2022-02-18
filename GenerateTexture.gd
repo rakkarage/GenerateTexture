@@ -32,10 +32,6 @@ extends Control
 var _output := Image.new()
 
 func _ready() -> void:
-	_noise = OpenSimplexNoise.new()
-	_preview.get_material().set_shader_param("color", Color.WHITE)
-	_big.get_material().set_shader_param("color", Color.WHITE)
-	_output.create(_size, _size, false, Image.FORMAT_RGBA8)
 	_colorEdit.connect("text_changed", _colorEditChanged)
 	_colorPicker.connect("color_changed", _colorPickerChanged)
 	_seedEdit.connect("text_changed", _seedEditChanged)
@@ -51,7 +47,10 @@ func _ready() -> void:
 	_generate.connect("pressed", _generatePressed)
 	_reset.connect("pressed", _resetPressed)
 	_save.connect("pressed", _savePressed)
-	call_deferred("_generatePressed")
+	_noise = OpenSimplexNoise.new()
+	_preview.get_material().set_shader_param("color", Color.WHITE)
+	_big.get_material().set_shader_param("color", Color.WHITE)
+	_output.create(_size, _size, false, Image.FORMAT_RGBA8)
 	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
@@ -82,7 +81,6 @@ func _resetPressed() -> void:
 	_noise = OpenSimplexNoise.new()
 	_preview.get_material().set_shader_param("color", Color.WHITE)
 	_big.get_material().set_shader_param("color", Color.WHITE)
-	_generatePressed()
 	_loadSettings()
 
 func _savePressed() -> void:
@@ -102,6 +100,7 @@ func _loadSettings() -> void:
 	_persistenceSlider.value = _noise.persistence
 	_lacunarityEdit.text = str(_noise.lacunarity)
 	_lacunaritySlider.value = _noise.lacunarity
+	_generatePressed()
 
 func _colorEditChanged(value: String) -> void:
 	var v := Color(value)
