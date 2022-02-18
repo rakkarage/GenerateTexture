@@ -51,12 +51,14 @@ func _ready() -> void:
 	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
+	var old := _noise.seed
 	_noise.seed += randi() % _seedMax
 	var image1 := _noise.get_seamless_image(_size)
 	_noise.seed += randi() % _seedMax
 	var image2 := _noise.get_seamless_image(_size)
 	_noise.seed += randi() % _seedMax
 	var image3 := _noise.get_seamless_image(_size)
+	_noise.seed = old;
 	for y in range(_size):
 		for x in range(_size):
 			var r = image1.get_pixel(x, y).r
