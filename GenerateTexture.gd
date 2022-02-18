@@ -103,109 +103,70 @@ func _loadSettings() -> void:
 	_lacunarityEdit.text = str(_noise.lacunarity)
 	_lacunaritySlider.value = _noise.lacunarity
 
-var _ignore = false
-
 func _colorEditChanged(value: String) -> void:
-	if !_ignore:
-		var v := Color(value)
-		_preview.get_material().set_shader_param("color", v)
-		_big.get_material().set_shader_param("color", v)
-		_ignore = true
-		_colorPicker.color = v
-		_ignore = false
+	var v := Color(value)
+	_preview.get_material().set_shader_param("color", v)
+	_big.get_material().set_shader_param("color", v)
+	_colorPicker.color = v
 
 func _colorPickerChanged(value: Color) -> void:
-	if !_ignore:
-		var v := value.to_html()
-		_preview.get_material().set_shader_param("color", Color(v))
-		_big.get_material().set_shader_param("color", Color(v))
-		_ignore = true
-		_colorEdit.text = v
-		_ignore = false
+	_preview.get_material().set_shader_param("color", value)
+	_big.get_material().set_shader_param("color", value)
+	_colorEdit.text = value.to_html()
 
 func _seedEditChanged(value: String) -> void:
-	if !_ignore:
-		var v := value.to_int()
-		_noise.seed = v
-		_ignore = true
-		_seedSlider.value = v
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := value.to_int()
+	_noise.seed = v
+	_seedSlider.value = v
+	call_deferred("_generatePressed")
 
 func _seedSliderChanged(value: float) -> void:
-	if !_ignore:
-		var v := int(value)
-		_noise.seed = v
-		_ignore = true
-		_seedEdit.text = str(v)
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := int(value)
+	_noise.seed = v
+	_seedEdit.text = str(v)
+	call_deferred("_generatePressed")
 
 func _octavesEditChanged(value: String) -> void:
-	if !_ignore:
-		var v := value.to_int()
-		_noise.octaves = v
-		_ignore = true
-		_octavesSlider.value = v
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := value.to_int()
+	_noise.octaves = v
+	_octavesSlider.value = v
+	call_deferred("_generatePressed")
 
 func _octavesSliderChanged(value: float) -> void:
-	if !_ignore:
-		var v := int(value)
-		_noise.octaves = v
-		_ignore = true
-		_octavesEdit.text = str(v)
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := int(value)
+	_noise.octaves = v
+	_octavesEdit.text = str(v)
+	call_deferred("_generatePressed")
 
 func _periodEditChanged(value: String) -> void:
-	if !_ignore:
-		var v := value.to_float()
-		_noise.period = v
-		_ignore = true
-		_periodSlider.value = v
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := value.to_float()
+	_noise.period = v
+	_periodSlider.value = v
+	call_deferred("_generatePressed")
 
 func _periodSliderChanged(value: float) -> void:
-	if !_ignore:
-		_noise.period = value
-		_ignore = true
-		_periodEdit.text = str(value)
-		_ignore = false
-		call_deferred("_generatePressed")
+	_noise.period = value
+	_periodEdit.text = str(value)
+	call_deferred("_generatePressed")
 
 func _persistenceEditChanged(value: String) -> void:
-	if !_ignore:
-		var v := value.to_float()
-		_noise.persistence = v
-		_ignore = true
-		_persistenceSlider.value = v
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := value.to_float()
+	_noise.persistence = v
+	_persistenceSlider.value = v
+	call_deferred("_generatePressed")
 
 func _persistenceSliderChanged(value: float) -> void:
-	if !_ignore:
-		_noise.persistence = value
-		_ignore = true
-		_persistenceEdit.text = str(value)
-		_ignore = false
-		call_deferred("_generatePressed")
+	_noise.persistence = value
+	_persistenceEdit.text = str(value)
+	call_deferred("_generatePressed")
 
 func _lacunarityEditChanged(value: String) -> void:
-	if !_ignore:
-		var v := value.to_float()
-		_noise.lacunarity = v
-		_ignore = true
-		_lacunaritySlider.value = v
-		_ignore = false
-		call_deferred("_generatePressed")
+	var v := value.to_float()
+	_noise.lacunarity = v
+	_lacunaritySlider.value = v
+	call_deferred("_generatePressed")
 
 func _lacunaritySliderChanged(value: float) -> void:
-	if !_ignore:
-		_noise.lacunarity = value
-		_ignore = true
-		_lacunarityEdit.text = str(value)
-		_ignore = false
-		call_deferred("_generatePressed")
+	_noise.lacunarity = value
+	_lacunarityEdit.text = str(value)
+	call_deferred("_generatePressed")
