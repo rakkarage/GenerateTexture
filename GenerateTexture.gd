@@ -47,8 +47,8 @@ func _ready() -> void:
 	assert(_generate.connect("pressed", _generatePressed) == OK)
 	assert(_reset.connect("pressed", _resetPressed) == OK)
 	assert(_save.connect("pressed", _savePressed) == OK)
-	_generatePressed()
-	_loadSettings()
+	call_deferred("_generatePressed")
+	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
 	_noise.seed += randi() % _seedMax
@@ -81,7 +81,9 @@ func _savePressed() -> void:
 	_output.save_png(_path)
 
 func _loadSettings() -> void:
-	_colorPicker.color = _preview.get_material().get_shader_param("color")
+	var color : Color = _preview.get_material().get_shader_param("color")
+	_colorEdit.text = str(_colorPicker.color)
+	_colorPicker.color = color
 	_seedEdit.text = str(_noise.seed)
 	_seedSlider.value = _noise.seed
 	_octavesEdit.text = str(_noise.octaves)

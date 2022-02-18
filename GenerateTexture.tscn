@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwpwpaxai4ywp"]
+[gd_scene load_steps=16 format=3 uid="uid://cwpwpaxai4ywp"]
 
 [ext_resource type="Script" path="res://GenerateTexture.gd" id="1_vfh1h"]
 [ext_resource type="Shader" path="res://Green.gdshader" id="2_7jtbv"]
@@ -26,10 +26,16 @@ shader = ExtResource( "4_rpxtv" )
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_f85jh"]
 gradient = SubResource( "Gradient_sakdx" )
 
+[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_06axx"]
+
+[sub_resource type="NoiseTexture" id="NoiseTexture_0by7h"]
+noise = SubResource( "OpenSimplexNoise_06axx" )
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3dfrb"]
 shader = ExtResource( "5_ujc5s" )
 shader_param/speed = 1.0
 shader_param/color = Color(1, 1, 1, 1)
+shader_param/noise = SubResource( "NoiseTexture_0by7h" )
 shader_param/gradient = SubResource( "GradientTexture2D_f85jh" )
 
 [node name="GenerateTexture" type="Control"]
@@ -47,16 +53,16 @@ __meta__ = {
 }
 
 [node name="Panel" type="PanelContainer" parent="Center"]
-offset_left = 89.0
+offset_left = 53.0
 offset_top = 76.0
-offset_right = 935.0
+offset_right = 971.0
 offset_bottom = 524.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Margin" type="MarginContainer" parent="Center/Panel"]
-offset_right = 846.0
+offset_right = 918.0
 offset_bottom = 448.0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_top = 16
@@ -68,7 +74,7 @@ _noise = SubResource( "OpenSimplexNoise_byt4g" )
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/Margin"]
 offset_left = 16.0
 offset_top = 16.0
-offset_right = 830.0
+offset_right = 902.0
 offset_bottom = 432.0
 theme_override_constants/separation = 16
 
@@ -152,19 +158,19 @@ texture = ExtResource( "2_xecim" )
 
 [node name="Left" type="VBoxContainer" parent="Center/Panel/Margin/HBox"]
 offset_left = 432.0
-offset_right = 814.0
+offset_right = 886.0
 offset_bottom = 416.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Settings" type="VBoxContainer" parent="Center/Panel/Margin/HBox/Left"]
 offset_top = 81.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 287.0
 alignment = 1
 
 [node name="Color" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 31.0
 theme_override_constants/separation = 16
 alignment = 1
@@ -180,19 +186,19 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
 offset_left = 116.0
-offset_right = 266.0
+offset_right = 338.0
 offset_bottom = 31.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2(222, 0)
 
 [node name="ColorPicker" type="ColorPickerButton" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
-offset_left = 282.0
-offset_right = 382.0
+offset_left = 354.0
+offset_right = 454.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 
 [node name="Seed" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_top = 35.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 66.0
 theme_override_constants/separation = 16
 alignment = 1
@@ -208,13 +214,13 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
 offset_left = 116.0
-offset_right = 266.0
+offset_right = 338.0
 offset_bottom = 31.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2(222, 0)
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
-offset_left = 282.0
-offset_right = 382.0
+offset_left = 354.0
+offset_right = 454.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -222,7 +228,7 @@ max_value = 2e+08
 
 [node name="Octaves" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_top = 70.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 101.0
 theme_override_constants/separation = 16
 alignment = 1
@@ -238,13 +244,13 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
 offset_left = 116.0
-offset_right = 266.0
+offset_right = 338.0
 offset_bottom = 31.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2(222, 0)
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
-offset_left = 282.0
-offset_right = 382.0
+offset_left = 354.0
+offset_right = 454.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -254,7 +260,7 @@ value = 1.0
 
 [node name="Period" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_top = 105.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 136.0
 theme_override_constants/separation = 16
 alignment = 1
@@ -270,13 +276,13 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
 offset_left = 116.0
-offset_right = 266.0
+offset_right = 338.0
 offset_bottom = 31.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2(222, 0)
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
-offset_left = 282.0
-offset_right = 382.0
+offset_left = 354.0
+offset_right = 454.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -287,7 +293,7 @@ value = 0.1
 
 [node name="Persistence" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_top = 140.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 171.0
 theme_override_constants/separation = 16
 alignment = 1
@@ -303,13 +309,13 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
 offset_left = 116.0
-offset_right = 266.0
+offset_right = 338.0
 offset_bottom = 31.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2(222, 0)
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
-offset_left = 282.0
-offset_right = 382.0
+offset_left = 354.0
+offset_right = 454.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -318,7 +324,7 @@ step = 0.01
 
 [node name="Lacunarity" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left/Settings"]
 offset_top = 175.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 206.0
 theme_override_constants/separation = 16
 alignment = 1
@@ -334,13 +340,13 @@ vertical_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
 offset_left = 116.0
-offset_right = 266.0
+offset_right = 338.0
 offset_bottom = 31.0
-rect_min_size = Vector2(150, 0)
+rect_min_size = Vector2(222, 0)
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
-offset_left = 282.0
-offset_right = 382.0
+offset_left = 354.0
+offset_right = 454.0
 offset_bottom = 31.0
 rect_min_size = Vector2(100, 0)
 size_flags_vertical = 1
@@ -351,26 +357,26 @@ value = 0.1
 
 [node name="Buttons" type="HBoxContainer" parent="Center/Panel/Margin/HBox/Left"]
 offset_top = 303.0
-offset_right = 382.0
+offset_right = 454.0
 offset_bottom = 334.0
 theme_override_constants/separation = 16
 alignment = 1
 
 [node name="Generate" type="Button" parent="Center/Panel/Margin/HBox/Left/Buttons"]
-offset_left = 88.0
-offset_right = 167.0
+offset_left = 124.0
+offset_right = 203.0
 offset_bottom = 31.0
 text = "Generate"
 
 [node name="Reset" type="Button" parent="Center/Panel/Margin/HBox/Left/Buttons"]
-offset_left = 183.0
-offset_right = 233.0
+offset_left = 219.0
+offset_right = 269.0
 offset_bottom = 31.0
 text = "Reset
 "
 
 [node name="Save" type="Button" parent="Center/Panel/Margin/HBox/Left/Buttons"]
-offset_left = 249.0
-offset_right = 293.0
+offset_left = 285.0
+offset_right = 329.0
 offset_bottom = 31.0
 text = "Save"
