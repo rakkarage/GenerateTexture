@@ -88,7 +88,7 @@ func _savePressed() -> void:
 
 func _loadSettings() -> void:
 	var color : Color = _preview.get_material().get_shader_param("color")
-	_colorEdit.text = _colorPicker.color.to_html()
+	_colorEdit.text = color.to_html()
 	_colorPicker.color = color
 	_seedEdit.text = str(_noise.seed)
 	_seedSlider.value = _noise.seed
