@@ -5,6 +5,7 @@ uniform sampler2D gradient;
 uniform float speed = 1.0;
 uniform vec4 color: hint_color;
 const float factor = 0.333;
+const float boost = 1.333;
 
 void fragment() {
 	vec2 uv1 = vec2(UV.x + TIME * speed * factor, UV.y + TIME * speed);
@@ -16,5 +17,5 @@ void fragment() {
 	float a = r * g * b;
 	float grad = texture(gradient, vec2(UV.y, UV.x)).r;
 	COLOR.rgb = color.rgb;
-	COLOR.a = clamp(texture(TEXTURE, UV).a * grad * a * 5.0, 0.0, 1.0);
+	COLOR.a = clamp(texture(TEXTURE, UV).a * grad * a * boost, 0.0, 1.0);
 }

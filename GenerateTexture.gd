@@ -1,27 +1,28 @@
 extends Control
 
-@onready var _texture : TextureRect = $HBox/Right/Middle/Panel2/Texture
-@onready var _textureRed : TextureRect = $HBox/Right/Middle/Panel1/Red
-@onready var _textureGreen : TextureRect = $HBox/Right/Top/Panel/Green
-@onready var _textureBlue : TextureRect = $HBox/Right/Middle/Panel3/Blue
-@onready var _preview : TextureRect = $HBox/Right/Bottom/Panel/Preview
+@onready var _texture : TextureRect = $Margin/HBox/Right/Middle/Panel2/Texture
+@onready var _textureRed : TextureRect = $Margin/HBox/Right/Middle/Panel1/Red
+@onready var _textureGreen : TextureRect = $Margin/HBox/Right/Top/Panel/Green
+@onready var _textureBlue : TextureRect = $Margin/HBox/Right/Middle/Panel3/Blue
+@onready var _preview : ColorRect = $Margin/HBox/Right/Bottom/Panel/Preview
+@onready var _big : ColorRect = $Big
 
-@onready var _colorEdit : LineEdit = $HBox/Left/Settings/Color/LineEdit
-@onready var _colorPicker : ColorPickerButton = $HBox/Left/Settings/Color/ColorPicker
-@onready var _seedEdit : LineEdit = $HBox/Left/Settings/Seed/LineEdit
-@onready var _seedSlider : HSlider = $HBox/Left/Settings/Seed/HSlider
-@onready var _octavesEdit : LineEdit = $HBox/Left/Settings/Octaves/LineEdit
-@onready var _octavesSlider : HSlider = $HBox/Left/Settings/Octaves/HSlider
-@onready var _periodEdit : LineEdit = $HBox/Left/Settings/Period/LineEdit
-@onready var _periodSlider : HSlider = $HBox/Left/Settings/Period/HSlider
-@onready var _persistenceEdit : LineEdit = $HBox/Left/Settings/Persistence/LineEdit
-@onready var _persistenceSlider : HSlider = $HBox/Left/Settings/Persistence/HSlider
-@onready var _lacunarityEdit : LineEdit = $HBox/Left/Settings/Lacunarity/LineEdit
-@onready var _lacunaritySlider : HSlider = $HBox/Left/Settings/Lacunarity/HSlider
+@onready var _colorEdit : LineEdit = $Margin/HBox/Left/Settings/Color/LineEdit
+@onready var _colorPicker : ColorPickerButton = $Margin/HBox/Left/Settings/Color/ColorPicker
+@onready var _seedEdit : LineEdit = $Margin/HBox/Left/Settings/Seed/LineEdit
+@onready var _seedSlider : HSlider = $Margin/HBox/Left/Settings/Seed/HSlider
+@onready var _octavesEdit : LineEdit = $Margin/HBox/Left/Settings/Octaves/LineEdit
+@onready var _octavesSlider : HSlider = $Margin/HBox/Left/Settings/Octaves/HSlider
+@onready var _periodEdit : LineEdit = $Margin/HBox/Left/Settings/Period/LineEdit
+@onready var _periodSlider : HSlider = $Margin/HBox/Left/Settings/Period/HSlider
+@onready var _persistenceEdit : LineEdit = $Margin/HBox/Left/Settings/Persistence/LineEdit
+@onready var _persistenceSlider : HSlider = $Margin/HBox/Left/Settings/Persistence/HSlider
+@onready var _lacunarityEdit : LineEdit = $Margin/HBox/Left/Settings/Lacunarity/LineEdit
+@onready var _lacunaritySlider : HSlider = $Margin/HBox/Left/Settings/Lacunarity/HSlider
 
-@onready var _generate : Button = $HBox/Left/Buttons/Generate
-@onready var _reset : Button = $HBox/Left/Buttons/Reset
-@onready var _save : Button = $HBox/Left/Buttons/Save
+@onready var _generate : Button = $Margin/HBox/Left/Buttons/Generate
+@onready var _reset : Button = $Margin/HBox/Left/Buttons/Reset
+@onready var _save : Button = $Margin/HBox/Left/Buttons/Save
 
 @export var _size := 128
 @export var _seedMax := 65535
@@ -33,6 +34,7 @@ var _output := Image.new()
 func _ready() -> void:
 	_noise = OpenSimplexNoise.new()
 	_preview.get_material().set_shader_param("color", Color.WHITE)
+	_big.get_material().set_shader_param("color", Color.WHITE)
 	_output.create(_size, _size, false, Image.FORMAT_RGBA8)
 	assert(_colorEdit.connect("text_changed", _colorEditChanged) == OK)
 	assert(_colorPicker.connect("color_changed", _colorPickerChanged) == OK)
@@ -74,10 +76,12 @@ func _generatePressed() -> void:
 	_textureGreen.texture = new
 	_textureBlue.texture = new
 	_preview.get_material().set_shader_param("noise", new)
+	_big.get_material().set_shader_param("noise", new)
 
 func _resetPressed() -> void:
 	_noise = OpenSimplexNoise.new()
 	_preview.get_material().set_shader_param("color", Color.WHITE)
+	_big.get_material().set_shader_param("color", Color.WHITE)
 	_generatePressed()
 	_loadSettings()
 
@@ -105,6 +109,7 @@ func _colorEditChanged(value: String) -> void:
 	if !_ignore:
 		var v := Color(value)
 		_preview.get_material().set_shader_param("color", v)
+		_big.get_material().set_shader_param("color", v)
 		_ignore = true
 		_colorPicker.color = v
 		_ignore = false
@@ -113,6 +118,7 @@ func _colorPickerChanged(value: Color) -> void:
 	if !_ignore:
 		var v := value.to_html()
 		_preview.get_material().set_shader_param("color", Color(v))
+		_big.get_material().set_shader_param("color", Color(v))
 		_ignore = true
 		_colorEdit.text = v
 		_ignore = false
