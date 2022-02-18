@@ -6,6 +6,8 @@ extends Control
 @onready var _textureBlue : TextureRect = $VBox/Middle/Panel3/Blue
 @onready var _preview : TextureRect = $VBox/Bottom/Panel/Preview
 
+@onready var _colorEdit : LineEdit = $VBox/Settings/Color/LineEdit
+@onready var _colorPicker : ColorPickerButton = $VBox/Settings/Color/ColorPicker
 @onready var _seedEdit : LineEdit = $VBox/Settings/Seed/LineEdit
 @onready var _seedSlider : HSlider = $VBox/Settings/Seed/HSlider
 @onready var _octavesEdit : LineEdit = $VBox/Settings/Octaves/LineEdit
@@ -18,6 +20,7 @@ extends Control
 @onready var _lacunaritySlider : HSlider = $VBox/Settings/Lacunarity/HSlider
 
 @onready var _generate : Button = $VBox/Buttons/Generate
+@onready var _reset : Button = $VBox/Buttons/Reset
 @onready var _save : Button = $VBox/Buttons/Save
 
 @export var _size := 128
@@ -29,6 +32,8 @@ var _output := Image.new()
 
 func _ready() -> void:
 	_output.create(_size, _size, false, Image.FORMAT_RGBA8)
+	assert(_colorEdit.connect("text_changed", _colorEditChanged) == OK)
+	assert(_colorPicker.connect("color_changed", _colorPickerChanged) == OK)
 	assert(_seedEdit.connect("text_changed", _seedEditChanged) == OK)
 	assert(_seedSlider.connect("value_changed", _seedSliderChanged) == OK)
 	assert(_octavesEdit.connect("text_changed", _octavesEditChanged) == OK)
@@ -39,8 +44,8 @@ func _ready() -> void:
 	assert(_persistenceSlider.connect("value_changed", _persistenceSliderChanged) == OK)
 	assert(_lacunarityEdit.connect("text_changed", _lacunarityEditChanged) == OK)
 	assert(_lacunaritySlider.connect("value_changed", _lacunaritySliderChanged) == OK)
-
 	assert(_generate.connect("pressed", _generatePressed) == OK)
+	assert(_reset.connect("pressed", _resetPressed) == OK)
 	assert(_save.connect("pressed", _savePressed) == OK)
 
 	_generatePressed()
@@ -69,10 +74,17 @@ func _generatePressed() -> void:
 	_textureBlue.texture = new
 	_preview.get_material().set_shader_param("noise", new)
 
+func _resetPressed() -> void:
+	_noise = OpenSimplexNoise.new()
+	# this not work???????????????????????????????????????????????
+	_preview.get_material().set_shader_param("noise", Color.WHITE)
+	_loadSettings()
+
 func _savePressed() -> void:
 	_output.save_png(_path)
 
 func _loadSettings() -> void:
+	_colorPicker.color = _preview.get_material().get_shader_param("color")
 	_seedEdit.text = str(_noise.seed)
 	_seedSlider.value = _noise.seed
 	_octavesEdit.text = str(_noise.octaves)
@@ -85,6 +97,22 @@ func _loadSettings() -> void:
 	_lacunaritySlider.value = _noise.lacunarity
 
 var _ignore = false
+
+func _colorEditChanged(value: String) -> void:
+	if !_ignore:
+		var v := Color(value)
+		_preview.get_material().set_shader_param("color", v)
+		_ignore = true
+		_colorPicker.color = v
+		_ignore = false
+
+func _colorPickerChanged(value: Color) -> void:
+	if !_ignore:
+		var v := str(value)
+		_preview.get_material().set_shader_param("color", v)
+		_ignore = true
+		_colorEdit.text = v
+		_ignore = false
 
 func _seedEditChanged(value: String) -> void:
 	if !_ignore:
