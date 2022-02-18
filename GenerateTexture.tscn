@@ -205,7 +205,7 @@ text = "Seed"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
 offset_left = 116.0
 offset_right = 216.0
 offset_bottom = 32.0
@@ -235,7 +235,7 @@ text = "Octaves"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
 offset_left = 116.0
 offset_right = 216.0
 offset_bottom = 32.0
@@ -267,7 +267,7 @@ text = "Period"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
 offset_left = 116.0
 offset_right = 216.0
 offset_bottom = 32.0
@@ -300,7 +300,7 @@ text = "Persistance"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
 offset_left = 116.0
 offset_right = 216.0
 offset_bottom = 32.0
@@ -331,7 +331,7 @@ text = "Lacunarity"
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="LineEdit" type="LineEdit" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
+[node name="SpinBox" type="SpinBox" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
 offset_left = 116.0
 offset_right = 216.0
 offset_bottom = 32.0

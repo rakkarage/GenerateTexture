@@ -9,15 +9,15 @@ extends Control
 
 @onready var _colorEdit : LineEdit = $Margin/HBox/Left/Settings/Color/LineEdit
 @onready var _colorPicker : ColorPickerButton = $Margin/HBox/Left/Settings/Color/ColorPicker
-@onready var _seedEdit : LineEdit = $Margin/HBox/Left/Settings/Seed/LineEdit
+@onready var _seedEdit : SpinBox = $Margin/HBox/Left/Settings/Seed/SpinBox
 @onready var _seedSlider : HSlider = $Margin/HBox/Left/Settings/Seed/HSlider
-@onready var _octavesEdit : LineEdit = $Margin/HBox/Left/Settings/Octaves/LineEdit
+@onready var _octavesEdit : SpinBox = $Margin/HBox/Left/Settings/Octaves/SpinBox
 @onready var _octavesSlider : HSlider = $Margin/HBox/Left/Settings/Octaves/HSlider
-@onready var _periodEdit : LineEdit = $Margin/HBox/Left/Settings/Period/LineEdit
+@onready var _periodEdit : SpinBox = $Margin/HBox/Left/Settings/Period/SpinBox
 @onready var _periodSlider : HSlider = $Margin/HBox/Left/Settings/Period/HSlider
-@onready var _persistenceEdit : LineEdit = $Margin/HBox/Left/Settings/Persistence/LineEdit
+@onready var _persistenceEdit : SpinBox = $Margin/HBox/Left/Settings/Persistence/SpinBox
 @onready var _persistenceSlider : HSlider = $Margin/HBox/Left/Settings/Persistence/HSlider
-@onready var _lacunarityEdit : LineEdit = $Margin/HBox/Left/Settings/Lacunarity/LineEdit
+@onready var _lacunarityEdit : SpinBox = $Margin/HBox/Left/Settings/Lacunarity/SpinBox
 @onready var _lacunaritySlider : HSlider = $Margin/HBox/Left/Settings/Lacunarity/HSlider
 
 @onready var _generate : Button = $Margin/HBox/Left/Buttons/Generate
@@ -34,15 +34,20 @@ var _output := Image.new()
 func _ready() -> void:
 	_colorEdit.connect("text_changed", _colorEditChanged)
 	_colorPicker.connect("color_changed", _colorPickerChanged)
-	_seedEdit.connect("text_changed", _seedEditChanged)
+	_seedSlider.share(_seedEdit)
+	_seedEdit.connect("value_changed", _seedEditChanged)
 	_seedSlider.connect("value_changed", _seedSliderChanged)
-	_octavesEdit.connect("text_changed", _octavesEditChanged)
+	_octavesSlider.share(_octavesEdit)
+	_octavesEdit.connect("value_changed", _octavesEditChanged)
 	_octavesSlider.connect("value_changed", _octavesSliderChanged)
-	_periodEdit.connect("text_changed", _periodEditChanged)
+	_periodSlider.share(_periodEdit)
+	_periodEdit.connect("value_changed", _periodEditChanged)
 	_periodSlider.connect("value_changed", _periodSliderChanged)
-	_persistenceEdit.connect("text_changed", _persistenceEditChanged)
+	_persistenceSlider.share(_persistenceEdit)
+	_persistenceEdit.connect("value_changed", _persistenceEditChanged)
 	_persistenceSlider.connect("value_changed", _persistenceSliderChanged)
-	_lacunarityEdit.connect("text_changed", _lacunarityEditChanged)
+	_lacunaritySlider.share(_lacunarityEdit)
+	_lacunarityEdit.connect("value_changed", _lacunarityEditChanged)
 	_lacunaritySlider.connect("value_changed", _lacunaritySliderChanged)
 	_generate.connect("pressed", _generatePressed)
 	_reset.connect("pressed", _resetPressed)
@@ -90,15 +95,15 @@ func _loadSettings() -> void:
 	var color : Color = _preview.get_material().get_shader_param("color")
 	_colorEdit.text = color.to_html()
 	_colorPicker.color = color
-	_seedEdit.text = str(_noise.seed)
+	_seedEdit.value = _noise.seed
 	_seedSlider.value = _noise.seed
-	_octavesEdit.text = str(_noise.octaves)
+	_octavesEdit.value = _noise.octaves
 	_octavesSlider.value = _noise.octaves
-	_periodEdit.text = str(_noise.period)
+	_periodEdit.value = _noise.period
 	_periodSlider.value = _noise.period
-	_persistenceEdit.text = str(_noise.persistence)
+	_persistenceEdit.value = _noise.persistence
 	_persistenceSlider.value = _noise.persistence
-	_lacunarityEdit.text = str(_noise.lacunarity)
+	_lacunarityEdit.value = _noise.lacunarity
 	_lacunaritySlider.value = _noise.lacunarity
 	_generatePressed()
 
@@ -113,59 +118,52 @@ func _colorPickerChanged(value: Color) -> void:
 	_big.get_material().set_shader_param("color", value)
 	_colorEdit.text = value.to_html()
 
-func _seedEditChanged(value: String) -> void:
-	var v := value.to_int()
-	_noise.seed = v
-	_seedSlider.value = v
+func _seedEditChanged(value: int) -> void:
+	_noise.seed = value
+	_seedSlider.value = value
 	call_deferred("_generatePressed")
 
 func _seedSliderChanged(value: float) -> void:
-	var v := int(value)
-	_noise.seed = v
-	_seedEdit.text = str(v)
+	_noise.seed = value
+	_seedEdit.value = value
 	call_deferred("_generatePressed")
 
-func _octavesEditChanged(value: String) -> void:
-	var v := value.to_int()
-	_noise.octaves = v
-	_octavesSlider.value = v
+func _octavesEditChanged(value: float) -> void:
+	_noise.octaves = value
+	_octavesSlider.value = value
 	call_deferred("_generatePressed")
 
 func _octavesSliderChanged(value: float) -> void:
-	var v := int(value)
-	_noise.octaves = v
-	_octavesEdit.text = str(v)
+	_noise.octaves = value
+	_octavesEdit.value = value
 	call_deferred("_generatePressed")
 
-func _periodEditChanged(value: String) -> void:
-	var v := value.to_float()
-	_noise.period = v
-	_periodSlider.value = v
+func _periodEditChanged(value: float) -> void:
+	_noise.period = value
+	_periodSlider.value = value
 	call_deferred("_generatePressed")
 
 func _periodSliderChanged(value: float) -> void:
 	_noise.period = value
-	_periodEdit.text = str(value)
+	_periodEdit.value = value
 	call_deferred("_generatePressed")
 
-func _persistenceEditChanged(value: String) -> void:
-	var v := value.to_float()
-	_noise.persistence = v
-	_persistenceSlider.value = v
+func _persistenceEditChanged(value: float) -> void:
+	_noise.persistence = value
+	_persistenceSlider.value = value
 	call_deferred("_generatePressed")
 
 func _persistenceSliderChanged(value: float) -> void:
 	_noise.persistence = value
-	_persistenceEdit.text = str(value)
+	_persistenceEdit.value = value
 	call_deferred("_generatePressed")
 
-func _lacunarityEditChanged(value: String) -> void:
-	var v := value.to_float()
-	_noise.lacunarity = v
-	_lacunaritySlider.value = v
+func _lacunarityEditChanged(value: float) -> void:
+	_noise.lacunarity = value
+	_lacunaritySlider.value = value
 	call_deferred("_generatePressed")
 
 func _lacunaritySliderChanged(value: float) -> void:
 	_noise.lacunarity = value
-	_lacunarityEdit.text = str(value)
+	_lacunarityEdit.value = value
 	call_deferred("_generatePressed")
