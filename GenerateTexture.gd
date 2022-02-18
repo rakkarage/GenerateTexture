@@ -26,11 +26,13 @@ extends Control
 @export var _size := 128
 @export var _seedMax := 65535
 @export var _path := "res://GenerateTexture.png"
-@export var _noise := OpenSimplexNoise.new()
+@export var _noise : OpenSimplexNoise
 
 var _output := Image.new()
 
 func _ready() -> void:
+	_noise = OpenSimplexNoise.new()
+	_preview.get_material().set_shader_param("color", Color.WHITE)
 	_output.create(_size, _size, false, Image.FORMAT_RGBA8)
 	assert(_colorEdit.connect("text_changed", _colorEditChanged) == OK)
 	assert(_colorPicker.connect("color_changed", _colorPickerChanged) == OK)
@@ -84,7 +86,7 @@ func _savePressed() -> void:
 
 func _loadSettings() -> void:
 	var color : Color = _preview.get_material().get_shader_param("color")
-	_colorEdit.text = str(_colorPicker.color)
+	_colorEdit.text = _colorPicker.color.to_html()
 	_colorPicker.color = color
 	_seedEdit.text = str(_noise.seed)
 	_seedSlider.value = _noise.seed
@@ -106,16 +108,14 @@ func _colorEditChanged(value: String) -> void:
 		_ignore = true
 		_colorPicker.color = v
 		_ignore = false
-		call_deferred("_generatePressed")
 
 func _colorPickerChanged(value: Color) -> void:
 	if !_ignore:
-		var v := str(value)
+		var v := value.to_html()
 		_preview.get_material().set_shader_param("color", Color(v))
 		_ignore = true
 		_colorEdit.text = v
 		_ignore = false
-		call_deferred("_generatePressed")
 
 func _seedEditChanged(value: String) -> void:
 	if !_ignore:
