@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cwpwpaxai4ywp"]
+[gd_scene load_steps=15 format=3 uid="uid://cwpwpaxai4ywp"]
 
 [ext_resource type="Script" path="res://GenerateTexture.gd" id="1_vfh1h"]
 [ext_resource type="Shader" path="res://Green.gdshader" id="2_7jtbv"]
@@ -6,11 +6,6 @@
 [ext_resource type="Shader" path="res://Red.gdshader" id="3_u8lr0"]
 [ext_resource type="Shader" path="res://Blue.gdshader" id="4_rpxtv"]
 [ext_resource type="Shader" path="res://Fire.gdshader" id="5_ujc5s"]
-
-[sub_resource type="OpenSimplexNoise" id="OpenSimplexNoise_byt4g"]
-period = 59.1
-persistence = 0.555
-lacunarity = 0.1
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_baxb2"]
 shader = ExtResource( "2_7jtbv" )
@@ -69,7 +64,6 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_bottom = 16
 script = ExtResource( "1_vfh1h" )
-_noise = SubResource( "OpenSimplexNoise_byt4g" )
 
 [node name="HBox" type="HBoxContainer" parent="Center/Panel/Margin"]
 offset_left = 16.0
@@ -191,6 +185,7 @@ offset_left = 116.0
 offset_right = 338.0
 offset_bottom = 31.0
 rect_min_size = Vector2(222, 0)
+alignment = 1
 
 [node name="ColorPicker" type="ColorPickerButton" parent="Center/Panel/Margin/HBox/Left/Settings/Color"]
 offset_left = 354.0
@@ -219,6 +214,7 @@ offset_left = 116.0
 offset_right = 338.0
 offset_bottom = 31.0
 rect_min_size = Vector2(222, 0)
+alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Seed"]
 offset_left = 354.0
@@ -249,6 +245,7 @@ offset_left = 116.0
 offset_right = 338.0
 offset_bottom = 31.0
 rect_min_size = Vector2(222, 0)
+alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Octaves"]
 offset_left = 354.0
@@ -281,6 +278,7 @@ offset_left = 116.0
 offset_right = 338.0
 offset_bottom = 31.0
 rect_min_size = Vector2(222, 0)
+alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Period"]
 offset_left = 354.0
@@ -314,6 +312,7 @@ offset_left = 116.0
 offset_right = 338.0
 offset_bottom = 31.0
 rect_min_size = Vector2(222, 0)
+alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Persistence"]
 offset_left = 354.0
@@ -345,6 +344,7 @@ offset_left = 116.0
 offset_right = 338.0
 offset_bottom = 31.0
 rect_min_size = Vector2(222, 0)
+alignment = 1
 
 [node name="HSlider" type="HSlider" parent="Center/Panel/Margin/HBox/Left/Settings/Lacunarity"]
 offset_left = 354.0
