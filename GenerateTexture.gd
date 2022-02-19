@@ -30,7 +30,6 @@ extends Control
 @export var _noise : OpenSimplexNoise
 
 var _output := Image.new()
-var _tween : Tween
 
 func _ready() -> void:
 	_colorEdit.connect("text_changed", _colorEditChanged)
@@ -60,13 +59,6 @@ func _ready() -> void:
 	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
-	if _tween:
-		_tween.kill()
-	_tween = create_tween()
-	_tween.tween_interval(0.333)
-	_tween.tween_callback(_generate)
-
-func _generate() -> void:
 	var old := _noise.seed
 	_noise.seed += randi() % _seedMax
 	var image1 := _noise.get_seamless_image(_size)
