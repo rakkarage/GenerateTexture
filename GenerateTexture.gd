@@ -20,9 +20,9 @@ extends Control
 @onready var _lacunarityEdit : SpinBox = $Margin/HBox/Left/Settings/Lacunarity/SpinBox
 @onready var _lacunaritySlider : HSlider = $Margin/HBox/Left/Settings/Lacunarity/HSlider
 
-@onready var _generate : Button = $Margin/HBox/Left/Buttons/Generate
-@onready var _reset : Button = $Margin/HBox/Left/Buttons/Reset
-@onready var _save : Button = $Margin/HBox/Left/Buttons/Save
+@onready var _generateButton : Button = $Margin/HBox/Left/Buttons/Generate
+@onready var _resetButton : Button = $Margin/HBox/Left/Buttons/Reset
+@onready var _saveButton : Button = $Margin/HBox/Left/Buttons/Save
 
 @export var _size := 128
 @export var _seedMax := 65535
@@ -30,6 +30,7 @@ extends Control
 @export var _noise : OpenSimplexNoise
 
 var _output := Image.new()
+var _tween : Tween
 
 func _ready() -> void:
 	_colorEdit.connect("text_changed", _colorEditChanged)
@@ -49,9 +50,9 @@ func _ready() -> void:
 	_lacunaritySlider.share(_lacunarityEdit)
 	_lacunarityEdit.connect("value_changed", _lacunarityEditChanged)
 	_lacunaritySlider.connect("value_changed", _lacunaritySliderChanged)
-	_generate.connect("pressed", _generatePressed)
-	_reset.connect("pressed", _resetPressed)
-	_save.connect("pressed", _savePressed)
+	_generateButton.connect("pressed", _generatePressed)
+	_resetButton.connect("pressed", _resetPressed)
+	_saveButton.connect("pressed", _savePressed)
 	_noise = OpenSimplexNoise.new()
 	_preview.get_material().set_shader_param("color", Color.WHITE)
 	_big.get_material().set_shader_param("color", Color.WHITE)
@@ -59,6 +60,13 @@ func _ready() -> void:
 	call_deferred("_loadSettings")
 
 func _generatePressed() -> void:
+	if _tween:
+		_tween.kill()
+	_tween = create_tween()
+	_tween.tween_interval(0.333)
+	_tween.tween_callback(_generate)
+
+func _generate() -> void:
 	var old := _noise.seed
 	_noise.seed += randi() % _seedMax
 	var image1 := _noise.get_seamless_image(_size)
